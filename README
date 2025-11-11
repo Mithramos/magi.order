@@ -13,6 +13,7 @@ Repository Structure and Contents:
 
 /magi.order/
 	magi.order.pdf			(a copy of the latest release)
+	LICENSE				(Mithramos license terms)
 	README				(verification procedures, etc.)
 /RELEASE/
 	2025-11-11/
