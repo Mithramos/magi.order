@@ -1,0 +1,105 @@
+========================================================================
+Title: Magi Order
+Author: Mithramos
+Email: mithramos@proton.me
+
+Copyright ©2025 Mithramos <mithramos@proton.me>.
+All rights reserved. No part of this publication may be copied,
+shared, or used without prior written permission from the author.
+
+------------------------------------------------------------------------
+Repository Structure and Contents:
+------------------------------------------------------------------------
+
+/magi.order/
+	magi.order.pdf			(a copy of the latest release)
+	README				(verification procedures, etc.)
+/RELEASE/
+	2025-11-11/
+		magi.order.pdf		(Magi Order - release PDF)
+		magi.order.pdf.asc	(PDF signed with GPG)
+		magi.order.pdf.bsd.pub	(Signify public-key)
+		magi.order.pdf.bsd.sum	(Signify public-key fingerprint)
+		magi.order.pdf.gpg.pub	(GPG public-key)
+		magi.order.pdf.gpg.sum	(GPG public-key fingerprint)
+		magi.order.pdf.ots	(PDF stamped by OpenTimestamps)
+		magi.order.pdf.sig	(PDF signed with Signify)
+		magi.order.pdf.sum	(PDF hashed with SHA256)
+		magi.order.pdf.sum.asc	(PDF-hash signed with GPG)
+		magi.order.pdf.sum.sig	(PDF-hash signed with Signify)
+
+------------------------------------------------------------------------
+Notes for Users:
+------------------------------------------------------------------------
+
+* Always verify SHA256 (*.sum), Signify (*.sig), GPG (*.asc), and OTS
+  before trusting any file.
+* Signify signatures cryptographically verify that the file has not been
+  altered and that it originates from the holder of the associated
+  private-key.
+* GPG signatures ensure integrity and cryptographic association with the
+  author's verified identity.
+* OTS provides a cryptographic timestamp, proving the file existed at a
+  specific point in time and has not been altered since.
+* Only the provided public keys and fingerprints should be trusted for
+  verification; do not rely on any other source.
+
+------------------------------------------------------------------------
+Verifying SHA256 Checksum:
+------------------------------------------------------------------------
+
+To verify the integrity of the magi.order.pdf file:
+
+1. Run:
+   sha256sum -c magi.order.pdf.sum
+
+2. If valid, output should be:
+   magi.order.pdf: OK
+
+------------------------------------------------------------------------
+Verifying Signify Signature:
+------------------------------------------------------------------------
+
+1. Ensure you have the Signify public key:
+   magi.order.pdf.bsd.pub
+
+2. Run:
+   signify-openbsd -V -p magi.order.pdf.bsd.pub -x magi.order.pdf.sig \
+   -m magi.order.pdf
+
+3. If valid, you will see:
+   "Signature Verified"
+
+------------------------------------------------------------------------
+Verifying GPG Detached Signature:
+------------------------------------------------------------------------
+
+1. Import the GPG public key (optional if already available):
+   gpg --import magi.order.pdf.gpg.pub
+
+2. Verify the archive:
+   gpg --verify magi.order.pdf.asc magi.order.pdf
+
+3. If valid, output should be similar to:
+   Good signature from "Mithramos <mithramos@proton.me>"
+
+4. Optionally check fingerprint:
+   gpg --fingerprint mithramos@proton.me
+   It should match the contents of magi.order.pdf.gpg.sum
+
+------------------------------------------------------------------------
+Verifying OpenTimestamps Proof:
+------------------------------------------------------------------------
+
+1. Ensure you have the OTS client installed:
+   https://opentimestamps.org/
+
+2. To verify timestamp:
+   ots verify magi.order.pdf
+
+3. If valid, output will confirm that the archive existed at the
+   recorded timestamp.
+
+========================================================================
+End of README
+========================================================================
