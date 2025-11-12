@@ -11,23 +11,30 @@ shared, or used without prior written permission from the author.
 Repository Structure and Contents:
 ------------------------------------------------------------------------
 
-/magi.order/
-	magi.order.pdf			(a copy of the latest release)
-	LICENSE				(Mithramos license terms)
-	README				(verification procedures, etc.)
-/RELEASE/
-	2025-11-11/
-		magi.order.pdf		(Magi Order - release PDF)
+/magi.order/				(Root directory of the repo)
+
+    magi.order.pdf			(PDF copy of the latest release)
+    LICENSE				(Mithramos license terms)
+    README				(instructions for verification)
+
+        /RELEASE/			(contains release directories)
+
+            /2025-11-12/		(latest release)
+
+		magi.order.pdf		(release PDF)
 		magi.order.pdf.asc	(PDF signed with GPG)
-		magi.order.pdf.bsd.pub	(Signify public-key)
-		magi.order.pdf.bsd.sum	(Signify public-key fingerprint)
-		magi.order.pdf.gpg.pub	(GPG public-key)
-		magi.order.pdf.gpg.sum	(GPG public-key fingerprint)
+		magi.order.pdf.bsd.pub	(Signify public key)
+		magi.order.pdf.bsd.sum	(Signify public key fingerprint)
+		magi.order.pdf.gpg.pub	(GPG public key)
+		magi.order.pdf.gpg.sum	(GPG public key fingerprint)
 		magi.order.pdf.ots	(PDF stamped by OpenTimestamps)
 		magi.order.pdf.sig	(PDF signed with Signify)
 		magi.order.pdf.sum	(PDF hashed with SHA256)
-		magi.order.pdf.sum.asc	(PDF-hash signed with GPG)
-		magi.order.pdf.sum.sig	(PDF-hash signed with Signify)
+		magi.order.pdf.sum.asc	(PDF hash signed with GPG)
+		magi.order.pdf.sum.sig	(PDF hash signed with Signify)
+
+            /2025-11-11/		(older release)
+		[same structure as above]
 
 ------------------------------------------------------------------------
 Notes for Users:
@@ -71,6 +78,13 @@ Verifying Signify Signature:
 3. If valid, you will see:
    "Signature Verified"
 
+4. Optionally verify the signature of the checksum for magi.order.pdf:
+   signify-openbsd -V -p magi.order.pdf.bsd.pub
+   -x magi.order.pdf.sum.sig -m magi.order.pdf.sum
+
+5. If valid, you will see:
+   "Signature Verified"
+
 ------------------------------------------------------------------------
 Verifying GPG Detached Signature:
 ------------------------------------------------------------------------
@@ -84,7 +98,13 @@ Verifying GPG Detached Signature:
 3. If valid, output should be similar to:
    Good signature from "Mithramos <mithramos@proton.me>"
 
-4. Optionally check fingerprint:
+4. Optionally verify the signature of the checksum for magi.order.pdf:
+   gpg --verify magi.order.pdf.sum.asc magi.order.pdf.sum
+
+5. If valid, output should be similar to:
+   Good signature from "Mithramos <mithramos@proton.me>"
+
+6. Optionally check fingerprint:
    gpg --fingerprint mithramos@proton.me
    It should match the contents of magi.order.pdf.gpg.sum
 
@@ -96,7 +116,7 @@ Verifying OpenTimestamps Proof:
    https://opentimestamps.org/
 
 2. To verify timestamp:
-   ots verify magi.order.pdf
+   ots verify magi.order.pdf.ots
 
 3. If valid, output will confirm that the archive existed at the
    recorded timestamp.
