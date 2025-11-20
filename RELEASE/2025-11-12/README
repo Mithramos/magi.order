@@ -19,7 +19,7 @@ Repository Structure and Contents:
 
         /RELEASE/                       (contains release directories)
 
-            /2025-11-20/                (latest release)
+            /2025-11-12/                (latest release)
 
                 magi.order.pdf          (release PDF)
                 magi.order.pdf.asc      (PDF signed with GPG)
@@ -33,10 +33,7 @@ Repository Structure and Contents:
                 magi.order.pdf.sum.asc  (PDF hash signed with GPG)
                 magi.order.pdf.sum.sig  (PDF hash signed with Signify)
 
-            /2025-11-12/                (older release)
-                [same structure as above]
-
-	    /2025-11-11/		(older release)
+            /2025-11-11/                (older release)
                 [same structure as above]
 
 ------------------------------------------------------------------------
